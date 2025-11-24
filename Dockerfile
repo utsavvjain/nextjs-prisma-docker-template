@@ -54,8 +54,7 @@ COPY --from=builder /app/node_modules ./node_modules
 # Create start script with conditional Prisma push
 RUN echo '#!/bin/sh' > /app/start.sh && \
     echo 'if [ -f ./prisma/schema.prisma ]; then' >> /app/start.sh && \
-    echo '  echo "Running Prisma DB push..."' >> /app/start.sh && \
-    echo '  npx prisma db push --accept-data-loss --force-reset' >> /app/start.sh && \
+    echo '  (echo "Running Prisma DB push..." && npx prisma db push --accept-data-loss --force-reset) &' >> /app/start.sh && \
     echo 'fi' >> /app/start.sh && \
     echo 'echo "Starting application..."' >> /app/start.sh && \
     echo 'npm start' >> /app/start.sh && \
