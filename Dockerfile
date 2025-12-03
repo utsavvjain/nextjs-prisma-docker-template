@@ -23,9 +23,9 @@ COPY . .
 RUN mkdir -p prisma
 
 # Generate Prisma client only if schema exists
-RUN if [ -f ./prisma/schema.prisma ]; then \
-    npx prisma generate --schema=./prisma/schema.prisma; \
-    fi
+#RUN if [ -f ./prisma/schema.prisma ]; then \
+#    npx prisma generate --schema=./prisma/schema.prisma; \
+#    fi
 
 # Build the application
 ENV NEXT_TELEMETRY_DISABLED=1
