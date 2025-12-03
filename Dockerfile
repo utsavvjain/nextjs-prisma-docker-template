@@ -1,5 +1,5 @@
 # Stage 1: Dependencies
-FROM node:20-alpine AS deps
+FROM public.ecr.aws/zomato/node:20.19.5-alpine-amd64 AS deps
 RUN apk add --no-cache libc6-compat
 RUN corepack enable && corepack prepare pnpm@latest --activate
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY package.json pnpm-lock.yaml* ./
 RUN pnpm install
 
 # Stage 2: Builder
-FROM node:20-alpine AS builder
+FROM public.ecr.aws/zomato/node:20.19.5-alpine-amd64 AS builder
 WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
