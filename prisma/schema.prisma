@@ -6,3 +6,13 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Task {
+  id         String   @id @default(cuid())
+  title      String   @db.VarChar(200)
+  completed  Boolean  @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map("tasks")
+}
